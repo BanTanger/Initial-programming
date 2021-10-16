@@ -5,17 +5,17 @@
 //	double H = 0.00;
 //	int n = 0;
 //	double ret = 0.00;
-//	int d = 0;
+//	int d = 0;//控制循环跳出的变量
 //	printf("the initial height is ");
 //	scanf("%lf", &H);
-//	scanf("%d", &n);
+//	scanf("%d", &n);//跳多少次
 //
 //	while (H > 0)
 //	{
 //		ret += H;
 //		H /= 2;
 //		d++;
-//		if (n == d)
+//		if (n == d)//达到循环就跳出
 //			break;
 //	}
 //	/*if (H == 0 || n != d)
@@ -289,32 +289,167 @@
 //	return 0;
 //}
 
+//int main()
+//{
+	//int shour, x;
+	//int time, smin;
+	//scanf("%d%d", &time, &x);
+	//if (time % 100 > 60 || time > 2400)
+	//	printf("输入错误\n");
+	//shour = x / 60;//流失多少个小时
+	//int chour = (time / 100) * 100;
+	//smin = x % 60;//流失多少分钟；
+	//int cmin = time % 100;//原有的分钟
+	//if ((smin + cmin) > 60)
+	//{
+	//	shour += 1;
+	//	cmin = (smin + cmin) % 60;
+	//	chour += shour * 100 + cmin;
+	//}
+	//else if((smin + cmin) < 60&& (smin + cmin)>0)
+	//{
+	//	cmin = (smin + cmin) % 60;
+	//	chour += shour * 100 + cmin;
+	//}
+	//else
+	//{
+	//	chour += shour * 100 + smin - 20;
+	//}
+	//int h, time, min, x,min_x,h_x;
+	//scanf("%d%d", &time, &x);
+	//h = (time / 100) * 100;
+	//min = time % 100;
+	//min_x = x % 60;
+	//h_x = x / 60;
+	//if (time > 2400 || time % 100 > 60)//非法判断
+	//	printf("输入非法！！！");
+	//
+	//printf("%d\n", );
+	//return 0;
+//}
+
+//int main()
+//{
+//	char a, b, c,tmp;//三个自输入变量，加一个交换变量
+//	scanf("%c\n%c\n%c",&a,&b,&c);
+//	/*if (a > b)
+//	{
+//		tmp = a;
+//		a = b;
+//		b = tmp;
+//	}
+//	if (a > c)
+//	{
+//		tmp = a;
+//		a = c;
+//		c = tmp;
+//	}
+//	if (b > c)
+//	{
+//		tmp = b;
+//		b = c;
+//		c = tmp;
+//	}*/
+//	//优化，三目
+//	char max = (a > b && a > c) ? a : ((b > c && b > a) ? b : c);
+//	char min = (c < b && c < a) ? c : ((a < c && a < b) ? a : b);
+//	char mid = (a + b + c) - (min + max);
+//	printf("\n%c\n\n%c\n\n%c\n\n",min,mid,max);
+//	return 0;
+//
+//}
+
+//加减法位运算
+//int	test(int a, int b)
+//{
+//	if (b == 0)
+//		return a;
+//	int Nsum = a ^ b;
+//	int Osum = (a & b) << 1;
+//	return test(Nsum,Osum);
+//}
+
+
+int	test(int a, int b)
+{
+	if (b == 0)
+		return a;
+	int Nsum = a ^ b;
+	int Osum = (a & b) << 1;
+	return test(Nsum, Osum);
+}
+//int test2(int a,int b)
+//{
+//	int count = a;
+//	//printf("%p", &count);
+//	if (b < 2)
+//		return count;
+//	else
+//	{
+//		test(b, -1);
+//		//printf("%p", &count);
+//		return test(count, a);
+//	}
+//}
+int multiply(int x, int y)
+{
+	int count = 0,i = 1;
+	if (x < 0)
+	{
+		x = -x; i = -i;
+	}
+	if (y < 0)
+	{
+		y = -y; i = -i;
+	}
+	while (y)
+	{
+		count = test(count,x);
+		y = test(y, -1);
+	}
+	count = (i < 0) ? -count : count;
+	return count;
+}
+int division(int x, int y)
+{
+	int end = 0, i = 1;
+	if (x < 0)
+	{
+		x = -x; i = -i;
+	}
+	if (y < 0)
+	{
+		y = -y; i = -i;
+	}
+	if (x < y)
+	{
+		int tmp = x;
+		x = y;
+		y = tmp;
+	}
+	int d = -y;//定义一个固定的负值，模拟减法
+	while ((x = test(x, d))>=0)
+	{
+		/*end = test(x, d);*/
+		end = test(end, 1);
+	}
+	end = (i < 0) ? -end : end;
+	return end;
+}
 int main()
 {
-	int shour, x;
-	int time, smin;
-	scanf("%d%d", &time, &x);
-	if (time % 100 > 60 || time > 2400)
-		printf("输入错误\n");
-	shour = x / 60;//流失多少个小时
-	int chour = (time / 100) * 100;
-	smin = x % 60;//流失多少分钟；
-	int cmin = time % 100;//原有的分钟
-	if ((smin + cmin) > 60)
+	int a, b;
+	scanf("%d%d", &a, &b);
+	if (a < b)//让b作为循环的量
 	{
-		shour += 1;
-		cmin = (smin + cmin) % 60;
-		chour += shour * 100 + cmin;
+		int tmp = a;
+		a = b;
+		b = tmp;
 	}
-	else if((smin + cmin) < 60&& (smin + cmin)>0)
-	{
-		cmin = (smin + cmin) % 60;
-		chour += shour * 100 + cmin;
-	}
-	else
-	{
-		chour += shour * 100 + smin - 40;
-	}
-	printf("%d\n", chour);
+	//int count = multiply(a, b);
+	int end = division(a, b);
+	//int ret = test(a,b);
+	/*int ret2 = test2(a,b);*/
+	printf("%d", end);
 	return 0;
 }
