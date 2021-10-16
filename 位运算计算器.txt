@@ -1,0 +1,100 @@
+void menu()
+{
+	printf(" 1.add   2.sub   3.mul   4.div  0.exit\n");
+}
+void swap(int* x,int* y)
+{//交换的目的是为了让y为小值，
+	//可达到减少循环和模拟减法的操作
+	if (*x < *y)
+	{
+		int tmp = *x;
+		*x = *y;
+		*y = tmp;
+	}
+}
+int	test(int a, int b)
+{
+	if (b == 0)
+		return a;
+	int Nsum = a ^ b;
+	int Osum = (a & b) << 1;
+	return test(Nsum, Osum);
+}
+void IfFun(int* x, int* y,int* i)
+{
+	//是否有优化？
+	if (*x < 0)
+	{
+		*x = -*x;
+		*i = -*i;
+	}
+	if (*y < 0)
+	{
+		*y = -*y;
+		*i = -*i;
+	}
+}
+int multiply(int x, int y)
+{
+	int count = 0,i = 1;
+	IfFun(&x, &y, &i);
+	while ((y = test(y, -1))>=0)
+		count = test(count,x);
+	return (i < 0) ? -count : count;
+}
+int division(int x, int y)
+{
+	int count = 0, i = 1;
+	IfFun(&x, &y, &i);
+	swap(&x,&y);
+	int d = -y;//定义一个固定的负值，模拟减法
+	while ((x = test(x, d))>=0)
+		count = test(count, 1);
+	return (i < 0) ? -count : count;
+}
+void print(int* a, int* b)
+{
+	printf("输入两个数:");
+	scanf("%d%d", a, b);
+	swap(a, b);
+}
+int main()
+{
+	int a, b, input, end;
+	do
+	{
+		menu();
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			print(&a, &b);
+			end = test(a, b);
+			printf("%d\n", end);
+			break;
+		case 2:
+			print(&a, &b);
+			end = test(a, b);
+			printf("%d\n", end);
+			break;
+		case 3:
+			print(&a, &b);
+			end = multiply(a, b);
+			printf("%d\n", end);
+			break;
+		case 4:
+			print(&a, &b);
+			end = division(a, b);
+			printf("%d\n", end);
+			break;
+		case 0:
+			printf("退出游戏！");
+			break;
+		default:
+			printf("非法输入,重新输入！\n");
+		}
+	} while (input);
+	//int count = multiply(a, b);
+	/*int count = division(a, b);*/
+	return 0;
+}
