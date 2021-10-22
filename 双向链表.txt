@@ -1,0 +1,60 @@
+typedef struct Node {
+	int data;
+	struct Node* next;
+	struct Node* prev;
+}n;
+struct Node* head;
+struct Node* GetNewNode(int x)
+{
+	n* newNode = (n*)malloc(sizeof(n));
+	newNode->data = x;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+	return newNode;
+}
+void InsertAtHead(int x)
+{
+	n* newNode = GetNewNode(x);//得到一个新节点
+	if (head == NULL) {
+		head = newNode;
+		return;
+	}
+	head->prev = newNode;//代表新节点前一个节点
+	newNode->next = head;
+	head = newNode;//更新head的指向对象，结束头节点对旧节点的连接
+	//达到向前插入的目的
+}
+void Print()
+{
+	n* temp = head;
+	if (temp == NULL)return;
+	printf("Print:");
+	while (temp != NULL)
+	{
+		printf("%d ",temp->data);
+		temp = temp->next;
+	}
+	printf("\n");
+}
+void ReversePrint()
+{
+	n* temp = head;
+	if (temp == NULL)return;
+	while (temp->next != NULL)
+		temp = temp->next;
+	printf("Reverse:");
+	while (temp != NULL)
+	{
+		printf("%d ", temp->data);
+		temp = temp->prev;
+	}
+	printf("\n");
+}
+int main()
+{
+	head = NULL;
+	InsertAtHead(2); Print(); ReversePrint();
+	InsertAtHead(4); Print(); ReversePrint();
+	InsertAtHead(6); Print(); ReversePrint();
+	InsertAtHead(8); Print(); ReversePrint();
+}
