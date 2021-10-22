@@ -1,0 +1,38 @@
+========数组实现栈===========
+#define MAX_SIZE 101
+int A[MAX_SIZE];
+int top = -1;
+
+void Push(int x)
+{
+	if (top == MAX_SIZE - 1)//减一是因为最后一个数据要放\0；
+	{
+		printf("Error:stack overflow\n");
+		return;//栈爆情况。
+	}
+	A[++top] = x;
+}
+void Pop()
+{
+	if (top == -1) {
+		printf("Error: No element to pop\n");
+		return;//异常情况抛出。
+	}
+	top--;
+}
+int Top()
+{
+	return A[top];//返回top的索引值
+}
+void Print()
+{
+	printf("%d ", A[top]);
+}
+int main()
+{
+	Push(5); Print();
+	Push(6); Print();
+	Push(15); Print();
+	Pop(); Print();
+	Top(); Print();
+}
