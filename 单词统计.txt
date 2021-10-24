@@ -1,0 +1,42 @@
+//统计字数的程序
+#include<stdbool.h>
+#include<ctype.h>
+#define STOP '|'
+int main(){
+	char c;//读取字符
+	char p;//前一个读入字符，用于识别行数
+	long chars = 0L;//字符数（总计）
+	int lines = 0;//统计行数
+	int words = 0;//统计一句话共有的单词数
+	int p_lines = 0;//若一句话中间出现了STOP，则统计加一
+	bool inword = false;//更新判断是否c在一个单词，如果是通过if语句来控制布尔量
+	//布尔量不能自增或自减
+	printf("请打印一句话，使用英文:>\n");
+	p = '\n';//识别行数。
+	while ((c = getchar()) != STOP)//循环执行
+	{
+		chars++;//统计字符
+		if (c == '\n')
+		lines++;
+		if (!isspace(c) && !inword)
+		{
+			inword = true;//更新inword的量,即为到单词头部
+			//更新之后即为开始进入一个单词中。每当c不一直等于空白字符时inword不跟新
+			words++;//单词计数
+		}
+		if (isspace(c) && inword)
+		{
+			inword = false;//到单词尾部
+		}
+		p = c;//保存字符值？？？
+	}
+	if (p != '\n')
+	{
+		p_lines++;
+	}
+
+	//打印部分
+	printf("一共有%d个单词，%d句话，%d个字符\n", words, lines, chars);
+	printf("共有%d个不完整的行\n", p_lines);
+	return 0;
+}
