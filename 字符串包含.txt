@@ -1,0 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<stdio.h>
+
+int compare(char* a, char* b)
+{
+	int count = 0;
+	char* temp = b;
+	while (*a != '\0')
+	{
+		if (*a == *b)//判断字符是否相等。迭代
+		{
+			a++;b++;
+			count++;
+		}
+		else 
+		{//如果不相等，tag指针进一，need指针不变去检索新字符是否相等
+			a++;
+			b = temp;
+		}
+		if (*b == '\0') return count;
+	}
+	if (count == 0||((*a == *b)||(*(a++) != *(b++))))//异常抛出
+		//1.计数器没进位，说明根本检索不到相同字符
+		//2.计数器进位，但之后的指针比较不同，说明不含有该字符。
+		count = -1;
+	return count;
+}
+int main()
+{
+	char* tag = "abcabcabcd";
+	char* need = "abcd";
+	int tmp = compare(tag, need);
+	printf("%d\n", tmp);
+}
