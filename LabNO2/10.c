@@ -1,8 +1,16 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+//#define _CRT_SECURE_NO_WARNINGS 1
 //#define MAXTITL 40
 //#define MAXAUTL 40
-//#define MAXBXS 5//5本书
-#include<stdio.h>
+//#define MAXBXS 2//5本书
+//#include<stdio.h>
+//#include<string.h>
+//#include<stdlib.h>
+//int compare(const void* a, const void* b)
+//{
+//	int A = *(int*)a;
+//	int B = *(int*)b;
+//	return A - B;
+//}
 //struct book {
 //	char title[MAXTITL];
 //	char author[MAXAUTL];
@@ -16,70 +24,57 @@
 //	int index;//下标
 //
 //	//创建书本
-//	while (count < MAXBXS && gets(library[count++].title) != NULL 
-//						  &&library[count].title[0]!='\0')
+//	for (count = 0; count < MAXBXS && library[count].title[0] != '\0'; count++)
 //	{
-//		scanf("%5s", &library[count].author);
-//		scanf("%5f", &library[count].num);
-//		scanf("%5f", &library[count].date);
+//		scanf("%s%s%d%d"
+//			, library[count].title
+//			, library[count].author
+//			, &library[count].num
+//			, &library[count].date);
 //		while (getchar() != '\n')
 //			continue;//清空输入行
 //	}
 //	//检索书本
-//	if (count > 0)
-//	{
-//		printf("here is the list of your books :\n");
+//		printf("\n\nAfter Order\n");
+//		//快排无效，不知为何
+//		/*qsort(library->title, MAXBXS, sizeof(char), compare);*/
+//		char temp[10] = { 0 };
 //		for (index = 0; index < count; index++)
-//			printf("%s %5s %5d %3d\n",
+//		{
+//			if (strcmp(library[index].title, library[index + 1].title) > 0)
+//			{
+//				strcpy(temp, library[index].title);
+//				strcpy(library[index].title, library[index + 1].title);
+//				strcpy(library[index + 1].title, temp);
+//			}
+//		}
+//		for (index = 0; index < count; index++)
+//		{
+//			printf("%-4s %5s %8d %6d\n",
 //				library[index].title,
 //				library[index].author,
 //				library[index].num,
 //				library[index].date);
-//	}
-//	else
-//		printf("无此书\n");
+//		}
+//		char title[20];
+//		int tmp = 0;//定义计数器，不知道如何在循环内表达检索不到书名
+//		scanf("%s", title);
+//		for (index = 0; index < count; index++)
+//		{
+//			if (strcmp(title, library[index].title) == 0)
+//			{
+//				printf("%-4s %5s %8d %6d\n",
+//					library[index].title,
+//					library[index].author,
+//					library[index].num,
+//					library[index].date);
+//				break;
+//			}
+//			tmp++;
+//		}
+//		if (tmp == MAXBXS)
+//			printf("找不到！\n");
 //	return 0;
 //}
-
-//======================结构体数组=======================
-#define MAXTITL 40
-#define MAXAUTL 40
-#define MAXBXS 2//一百本书
-struct book {
-	char title[MAXTITL];
-	char author[MAXAUTL];
-	float value;
-};
-int main()
-{
-	struct book library[MAXBXS];//book类型的数组
-	int count = 0;
-
-	//创建书本
-	printf("please enter thet book title.\n");
-	printf("press [enter] at the start of a line to stop.\n");
-	printf("%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n", "名字", "年龄", "性别", "电话", "地址");
-	//打印数据
-	for (int i = 0; i < ps->size; i++)
-	{
-		printf("%-20s\t%-4d\t%-5s\t%-12s\t%-20s\n",
-			ps->data[i].name,
-			ps->data[i].age,
-			ps->data[i].sex,
-			ps->data[i].tele,
-			ps->data[i].addr);
-	}
-	//检索书本
-	if (count > 0)
-	{
-		printf("here is the list of your books :\n");
-		for (index = 0; index < count; index++)
-			printf("%s by %s: $%.2f\n",
-				library[index].title,
-				library[index].author,
-				library[index].value);
-	}
-	else
-		printf("no book? too bad.\n");
-	return 0;
-}
+//
+//
