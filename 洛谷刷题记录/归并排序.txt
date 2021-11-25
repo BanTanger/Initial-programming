@@ -1,0 +1,35 @@
+void Merge(int arr[], int left, int mid, int right)
+{
+    static int p = 1;
+    
+    int queue[123456] = { 0 };
+    //标记左半区第一个未排序的元素
+    int L_pos = left;
+    //标记右半区第一个未排序的元素
+    int R_pos = mid + 1;
+    //临时数组元素的下标
+    int pos = left;
+    
+    //合并
+    while (L_pos <= mid && R_pos <= right) {
+        if (R_pos > right || (L_pos <= mid && arr[L_pos] <= arr[R_pos]))
+            //左半区第一个元素更小，符合条件，进入临时数组保存
+            //R_pos>right是为了归并到else里面去做的限制条件。
+            //L_pos<=mid的意思是归并已经排好序但是没有进入临时数组的元素。
+            queue[pos++] = arr[L_pos++];
+        else
+            queue[pos++] = arr[R_pos++];
+    }
+    while (left <= right)
+        arr[right--] = queue[--p];
+}
+
+void MergeSort(int arr[], int left, int right)
+{
+    if (left >= right)
+        return;
+    int mid = (left + right) / 2;
+    MergeSort(arr, left, mid);
+    MergeSort(arr, mid + 1, right);
+    Merge(arr, left, mid, right);//二分递归
+}
