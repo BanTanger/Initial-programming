@@ -79,6 +79,11 @@ void test3() {
 }
 
 //插入和删除
+//push_back().尾插
+//pop_back().尾删
+//insert.插入
+//erase.删除
+//clear.清空
 void test4() {
 	vector<int>v8;
 	for (int i = 0; i < 10; i++) {
@@ -104,11 +109,67 @@ void test4() {
 	printVector(v8);
 
 	v8.erase(v8.begin(), v8.end());
-	printVector(v8);//清除所有元素
+	printVector(v8);//清除所有元素 == v8.clear（）
+}
+
+void test5() {
+	vector<int>v9;
+	for (int i = 0; i < 10; i++) {
+		v9.push_back(i);
+	}
+	printVector(v9);
+	vector<int>v10;
+	for (int i = 10; i > 0; i--) {
+		v10.push_back(i);
+	}
+	printVector(v10);
+
+	cout << "交换" << endl;
+
+	v9.swap(v10);
+	printVector(v9);
+	printVector(v10);
+}
+
+void test6() {
+	//swap的实际用途。用来收缩空间
+	
+	vector<int>v11;
+	for (int i = 0; i < 1000000; i++) {
+		v11.push_back(i);
+	}
+	cout << v11.capacity() << endl;
+	cout << v11.size() << endl;
+
+	//格式
+	vector<int>(v11).swap(v11);//使得容量和大小一样。匿名对象。
+	cout << v11.capacity() << endl;
+	cout << v11.size() << endl;
+}
+
+void test7() {
+	vector<int>v12;
+
+	//利用reserve预留空间
+	v12.reserve(1000000);
+	int num = 0, * p = NULL;
+	for (int i = 0; i < 1000000; i++) {
+		v12.push_back(i);
+
+		if (p != &v12[0]) {
+			p = &v12[0];
+			num++;
+		}
+	}
+	cout << num << endl;
+
 }
 int main() {
 	//test();
 	//test2();
 	//test3();
-	test4();
+	//test4();
+	//test5();
+	test6();
+	//test7();
 }
