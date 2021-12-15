@@ -1,0 +1,12 @@
+void SelectSort(int arr[], int left, int right)
+{
+    int i, j, k;
+
+    for (i = left; i <= right; i++) {
+        for (j = k = i; j <= right; j++) //可以理解为对k进行选择，将k的指向第i-left小的
+            if (arr[j] < arr[k])//寻找更小
+                k = j;
+        if (i < k)
+            swap(arr, i, k);//交换数组，然后i进一进行下一个的排序
+    }
+}
