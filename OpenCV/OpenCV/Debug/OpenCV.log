@@ -1,0 +1,11 @@
+﻿OpenCV.obj : error LNK2019: 无法解析的外部符号 "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPAX@Z)，函数 "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ) 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "private: char * __thiscall cv::String::allocate(unsigned int)" (?allocate@String@cv@@AAEPADI@Z)，函数 "public: __thiscall cv::String::String(char const *)" (??0String@cv@@QAE@PBD@Z) 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "private: void __thiscall cv::String::deallocate(void)" (?deallocate@String@cv@@AAEXXZ)，函数 "public: __thiscall cv::String::~String(void)" (??1String@cv@@QAE@XZ) 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "public: void __thiscall cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QAEXXZ)，函数 "public: void __thiscall cv::Mat::release(void)" (?release@Mat@cv@@QAEXXZ) 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "class cv::Mat __cdecl cv::imread(class cv::String const &,int)" (?imread@cv@@YA?AVMat@1@ABVString@1@H@Z)，函数 _main 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "int __cdecl cv::waitKey(int)" (?waitKey@cv@@YAHH@Z)，函数 _main 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 "void __cdecl cv::imshow(class cv::String const &,class cv::debug_build_guard::_InputArray const &)" (?imshow@cv@@YAXABVString@1@ABV_InputArray@debug_build_guard@1@@Z)，函数 _main 中引用了该符号
+OpenCV.obj : error LNK2019: 无法解析的外部符号 _cvNamedWindow，函数 _main 中引用了该符号
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: 无法解析的外部符号 _WinMain@16，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
+F:\opencv\build\x64\vc14\lib\opencv_world340d.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+C:\Users\12902\source\repos\OpenCV\Debug\OpenCV.exe : fatal error LNK1120: 9 个无法解析的外部命令
