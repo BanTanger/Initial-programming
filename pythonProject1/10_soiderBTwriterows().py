@@ -11,7 +11,7 @@ class BTSpider:
         # 打开csv文件,初始化写入对象
         self.f = open('BTfile.csv','a',encoding='utf-8',newline='')
         self.writer = csv.writer(self.f)
-        # 创建一个新列表
+        # 创建一个新列表    列表【】，元组（），字典{}
         self.all_film_list = []
 
     def get_html(self,url):
@@ -21,7 +21,6 @@ class BTSpider:
         html = res.read().decode('utf-8')
         """直接调用解析函数"""
         self.parse_html(html)
-
 
     def parse_html(self,html):
         """解析提取数据"""
@@ -33,13 +32,15 @@ class BTSpider:
     def save_html(self,r_list):
         """数据处理函数"""
         for r in r_list:
-            file_li = {
+            # 使用元组形式来处理信息空白情况
+            film_t = (
                 r[0].strip(),
                 r[1].strip(),
                 r[2].strip()
-            }
-            self.writer.writerow(file_li)
-            print(file_li)
+            )
+            # 每个电影信息处理后添加在总列表中
+            self.writer.writerow(film_t)
+            print(film_t)
             self.i += 1
 
     def run(self):
@@ -49,6 +50,9 @@ class BTSpider:
             self.get_html(url) #数据抓取
             # 控制数据抓取频率
             time.sleep(random.randint(1,2))
+            #
+        #所有也所有数据抓取完成后，进行writerows（）数据写入
+        self.writer.writerows(self.all_film_list)
 
 if __name__ == '__main__':
     spider = BTSpider()
