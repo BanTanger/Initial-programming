@@ -37,7 +37,7 @@ for li in lis:
     shop = li.find_element_by_css_selector(' .p-shop a').text # 商品店铺
     href = li.find_element_by_css_selector(' .p-img a').get_attribute('href') # 商品详情页
     print(title, price, commit, shop, href, sep=' | ')
-    with open('京东数据.csv', mode='a', encoding='utf-8', newline='') as f:
+    with open('京东数据.csv', mode='a', encoding='gbk', newline='') as f:
         csv_write = csv.writer(f)
         csv_write.writerow([title, price, commit, shop, href])
 
